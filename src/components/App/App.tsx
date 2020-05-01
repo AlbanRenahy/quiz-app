@@ -6,6 +6,8 @@ import { lightTheme } from "../../styles/themes";
 import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import Home from "../Home/home";
+import Quiz from "../Quiz/quiz";
+import Score from "../Score/score";
 
 const ThemedMain = styled.main`
   flex: 1;
@@ -31,6 +33,12 @@ const App: React.FC<StyledProps> = ({ className }) => {
             </Route>
             <Route path="/settings">
               <p>Settings</p>
+            </Route>
+            <Route path="/quiz">
+              <Quiz />
+            </Route>
+            <Route path="/score">
+              <Score />
             </Route>
           </Router>
         </ThemedMain>
