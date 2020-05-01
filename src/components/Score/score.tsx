@@ -16,9 +16,9 @@ import { PrimaryButton } from "../../common/buttons";
  const Quiz: React.FC<StyledProps> = ({ className }) => {
   return (
     <ThemedSection className={className}>
-      The Quiz!
-      <Link to="/score" className="action">
-        <PrimaryButton>Score</PrimaryButton>
+      The Final Score
+      <Link to="/" className="action">
+        <PrimaryButton>Home</PrimaryButton>
       </Link>
     </ThemedSection>
   );
