@@ -10,7 +10,7 @@ const ThemedHeader = styled.header`
 const Header: React.FC<StyledProps> = ({ className }) => {
   return (
     <ThemedHeader className={className}>
-      <h1>Quizzy!</h1>
+      <h1>Quizzy</h1>
     </ThemedHeader>
   );
 };
