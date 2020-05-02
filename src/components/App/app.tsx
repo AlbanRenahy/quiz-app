@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { StyledProps } from "../../utils/interfaces";
+import { AppProps } from "../../utils/interfaces";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { lightTheme } from "../../styles/themes";
+import { connect } from "react-redux";
+import { AppState } from "../../store";
+import { Mode } from "../../store/system/types";
+import { lightTheme, darkTheme } from "../../styles/themes";
 import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import Home from "../Home/home";
@@ -20,10 +23,10 @@ const ThemedMain = styled.main`
   color: ${props => props.theme.primary.text};
 `;
 
-const App: React.FC<StyledProps> = ({ className }) => {
+const App: React.FC<AppProps> = ({ className, mode }) => {
   const [theme] = useState(lightTheme);
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={mode === Mode.LIGHT ? lightTheme : darkTheme}>
       <div className={className}>
         <Header />
         <ThemedMain>
@@ -48,9 +51,15 @@ const App: React.FC<StyledProps> = ({ className }) => {
   );
 };
 
-export default styled(App)`
+export const StyledApp = styled(App)`
   text-align: center;
   display: flex;
   flex-direction: column;
   height: 100vh;
 `;
+
+const mapStateToProps = (state: AppState) => ({
+  mode: state.system.mode
+});
+
+ export default connect(mapStateToProps)(StyledApp);
