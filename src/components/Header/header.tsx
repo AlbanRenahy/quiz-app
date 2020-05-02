@@ -1,12 +1,11 @@
 import React from "react";
-
 import { styled } from "../../styles/themes";
 import { StyledProps } from "../../utils/interfaces";
-import { MdMoreVert } from "react-icons/md";
+import Settings from "../Settings/settings";
 
 const ThemedHeader = styled.header`
-  background: ${props => props.theme.primary.light};
-  color: ${props => props.theme.primary.text};
+  background: ${(props) => props.theme.primary.light};
+  color: ${(props) => props.theme.primary.text};
   padding: 4px;
   display: flex;
   flex-direction: row;
@@ -18,9 +17,7 @@ const Header: React.FC<StyledProps> = ({ className }) => {
       <div className="left">
         <h1>Quizzy</h1>
       </div>
-      <div className="right">
-        <MdMoreVert />
-      </div>
+      <Settings />
     </ThemedHeader>
   );
 };
