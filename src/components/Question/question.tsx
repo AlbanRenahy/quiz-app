@@ -5,11 +5,14 @@ import { Question as QuestionInterface } from "../../store/quiz/types";
 import { connect } from "react-redux";
 import { addAnswer, incrementCurrent } from "../../store/quiz/actions";
 import { useHistory } from "react-router-dom";
+import { AppState } from "../../store";
 
  interface QuestionProps extends StyledProps {
   question: QuestionInterface;
   addAnswer: typeof addAnswer;
   incrementCurrent: typeof incrementCurrent;
+  currentQuestion: number;
+  maxQuestions: number;
 }
 
  const QuestionContainer = styled.div`
@@ -56,7 +59,9 @@ import { useHistory } from "react-router-dom";
   className,
   question,
   addAnswer,
-  incrementCurrent
+  incrementCurrent,
+  currentQuestion,
+  maxQuestions
 }) => {
   const [answered, setAnswered] = useState(false);
   const history = useHistory();
@@ -70,7 +75,9 @@ import { useHistory } from "react-router-dom";
       setAnswered(true);
       addAnswer(ans);
       incrementCurrent();
-      history.push("/score");
+      if (currentQuestion === maxQuestions - 1) {
+        history.push("/score");
+      }
     }
   };
 
@@ -121,4 +128,11 @@ import { useHistory } from "react-router-dom";
   }
 `;
 
- export default connect(null, { addAnswer, incrementCurrent })(StyledQuestion);
+const mapStateToProps = (state: AppState) => ({
+  currentQuestion: state.quiz.currentQuestion,
+  maxQuestions: state.quiz.maxQuestions
+});
+
+ export default connect(mapStateToProps, { addAnswer, incrementCurrent })(
+  StyledQuestion
+);
