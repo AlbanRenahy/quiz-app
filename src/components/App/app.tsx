@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { AppProps } from "../../utils/interfaces";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import ControlledRoute from "../../utils/ControlledRoute/controlledRoute";
 import { connect } from "react-redux";
 import { AppState } from "../../store";
 import { Mode } from "../../store/system/types";
@@ -14,17 +15,17 @@ import Score from "../Score/score";
 
 const ThemedMain = styled.main`
   flex: 1;
-  background-color: ${props => props.theme.primary.light};
+  background-color: ${props => props.theme.primary.main};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: ${props => props.theme.primary.text};
+  position: relative;
 `;
 
 const App: React.FC<AppProps> = ({ className, mode }) => {
-  const [theme] = useState(lightTheme);
   return (
     <ThemeProvider theme={mode === Mode.LIGHT ? lightTheme : darkTheme}>
       <div className={className}>
@@ -32,7 +33,7 @@ const App: React.FC<AppProps> = ({ className, mode }) => {
         <ThemedMain>
           <Router>
             <Route path="/" exact>
-            <Home />
+              <Home />
             </Route>
             <Route path="/settings">
               <p>Settings</p>
@@ -40,9 +41,9 @@ const App: React.FC<AppProps> = ({ className, mode }) => {
             <Route path="/quiz">
               <Quiz />
             </Route>
-            <Route path="/score">
+            <ControlledRoute path="/score">
               <Score />
-            </Route>
+            </ControlledRoute>
           </Router>
         </ThemedMain>
         <Footer />
@@ -56,10 +57,14 @@ export const StyledApp = styled(App)`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  @media screen and (min-width: 690px) {
+    width: 690px;
+    margin: 0 auto;
+  }
 `;
 
 const mapStateToProps = (state: AppState) => ({
   mode: state.system.mode
 });
 
- export default connect(mapStateToProps)(StyledApp);
+export default connect(mapStateToProps)(StyledApp);

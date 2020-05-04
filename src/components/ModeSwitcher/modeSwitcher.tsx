@@ -16,6 +16,17 @@ import { FaMoon } from "react-icons/fa";
   border-bottom: solid 1px ${props => props.theme.secondary.main};
 `;
 
+const LabelDiv = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+ const ControlDiv = styled.div`
+  flex: 3;
+`;
+
  interface ModeSwitcherInterface extends AppProps {
   changeMode: typeof changeMode;
 }
@@ -27,12 +38,12 @@ import { FaMoon } from "react-icons/fa";
 }) => {
   return (
     <ModeDiv>
-      <div>Mode</div>
-      <div>
+      <LabelDiv>Mode</LabelDiv>
+      <ControlDiv>
         <PrimaryButton onClick={() => changeMode()}>
           {mode === Mode.LIGHT ? <MdWbSunny /> : <FaMoon />}
         </PrimaryButton>
-      </div>
+      </ControlDiv>
     </ModeDiv>
   );
 };

@@ -3,8 +3,9 @@ import { styled } from "../../styles/themes";
 import { StyledProps } from "../../utils/interfaces";
 import { MdMoreVert } from "react-icons/md";
 import ModeSwitcher from "../ModeSwitcher/modeSwitcher";
+import DifficultySwitcher from "../DifficultySwitcher/difficultySwitcher";
 
- const MenuIcon = styled.div`
+const MenuIcon = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
@@ -19,7 +20,7 @@ import ModeSwitcher from "../ModeSwitcher/modeSwitcher";
   }
 `;
 
- const FullMenu = styled.div`
+const FullMenu = styled.div`
   width: 300px;
   height: 200px;
   background: ${props => props.theme.secondary.light};
@@ -31,6 +32,7 @@ import ModeSwitcher from "../ModeSwitcher/modeSwitcher";
   border-radius: 6px;
   box-shadow: ${props => props.theme.all.darkShadow};
   transition: ${props => props.theme.all.mainTransition};
+  z-index: 99;
   &::before {
     position: absolute;
     top: -20px;
@@ -57,7 +59,7 @@ import ModeSwitcher from "../ModeSwitcher/modeSwitcher";
   }
 `;
 
- const CloseButton = styled.div`
+const CloseButton = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -77,7 +79,7 @@ import ModeSwitcher from "../ModeSwitcher/modeSwitcher";
   }
 `;
 
- const Settings: React.FC<StyledProps> = ({ className }) => {
+const Settings: React.FC<StyledProps> = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className={className}>
@@ -88,6 +90,7 @@ import ModeSwitcher from "../ModeSwitcher/modeSwitcher";
         <FullMenu>
           <CloseButton onClick={() => setIsOpen(!isOpen)}>x</CloseButton>
           <ModeSwitcher />
+          <DifficultySwitcher />
         </FullMenu>
       ) : (
         ""
@@ -96,7 +99,7 @@ import ModeSwitcher from "../ModeSwitcher/modeSwitcher";
   );
 };
 
- export default styled(Settings)`
+export default styled(Settings)`
   position: relative;
   display: flex;
   justify-content: center;
