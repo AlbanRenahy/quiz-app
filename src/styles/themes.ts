@@ -19,7 +19,7 @@ export const lightTheme = {
   secondary: {
     main: "#FF6E40",
     light: "#FFA06d",
-    dark: "orange",
+    dark: "brown",
     text: "#000000"
   }
 };
