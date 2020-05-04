@@ -1,6 +1,6 @@
 import baseStyled, { ThemedStyledInterface } from "styled-components";
 
- export const lightTheme = {
+export const lightTheme = {
   all: {
     white: "#FFFFFF",
     black: "#000000",
@@ -19,12 +19,12 @@ import baseStyled, { ThemedStyledInterface } from "styled-components";
   secondary: {
     main: "#FF6E40",
     light: "#FFA06d",
-    dark: "#C53d13",
+    dark: "orange",
     text: "#000000"
   }
 };
 
- export const darkTheme: Theme = {
+export const darkTheme: Theme = {
   all: {
     ...lightTheme.all
   },
